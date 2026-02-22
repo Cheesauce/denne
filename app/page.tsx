@@ -65,7 +65,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: '2+', label: 'Years Experience', icon: '💼' },
+              { number: '3+', label: 'Years Experience', icon: '💼' },
               { number: '50+', label: 'Projects Completed', icon: '🚀' },
               { number: '100%', label: 'Client Satisfaction', icon: '⭐' },
               { number: '3+', label: 'Certifications', icon: '🏆' },
