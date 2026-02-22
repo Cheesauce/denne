@@ -114,7 +114,7 @@ export default function Navbar() {
               onClick={toggleTheme}
               className="flex items-center gap-2 text-lg font-medium dark:text-gray-300 text-gray-600"
             >
-              {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
+              {/* {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'} */}
             </button>
           </div>
         </div>
