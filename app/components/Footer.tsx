@@ -18,7 +18,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="https://www.linkedin.com/in/denne-joshua-suelan-865823201/"
+                href="https://www.linkedin.com/in/denne-joshua-s-865823201/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-[#10b981] hover:text-white transition-all duration-300"
