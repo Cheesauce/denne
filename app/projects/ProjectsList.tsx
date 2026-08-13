@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { ShoppingCart, Landmark, HeartPulse, Globe, Bot, Plane, ShieldCheck, Link2, ArrowRight, Car } from 'lucide-react';
+import { ShoppingCart, Landmark, HeartPulse, Satellite, Bot, Plane, ShieldCheck, Link2, ArrowRight, Car } from 'lucide-react';
 
 function GitHubIcon(props: { className?: string }) {
   return (
@@ -42,11 +42,11 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Corporate Network Infrastructure',
+    title: 'Nationwide Satellite & Public Wi-Fi Connectivity',
     category: 'Network Engineering',
-    description: 'Designed and implemented a secure network infrastructure for a 500+ employee corporate office with redundant connections.',
-    technologies: ['Cisco', 'Firewall', 'VPN', 'Network Monitoring'],
-    icon: Globe,
+    description: 'Supported the planning, field deployment, and maintenance of DICT nationwide connectivity programs — including Low Earth Orbit satellite internet (PIALEOS) for underserved barangays, schools, and health facilities, plus public Wi-Fi rollouts (WITS, PICS-PP/PICS-MUN, PROVINET) across multiple regions.',
+    technologies: ['LEO Satellite (VSAT)', 'Wireless Networking', 'Field Deployment', 'NOC Monitoring'],
+    icon: Satellite,
     color: 'bg-orange-500',
   },
   {
@@ -69,10 +69,10 @@ const projects = [
   },
   {
     id: 7,
-    title: 'Network Security Implementation',
+    title: 'Philippine Navy VSAT & Endpoint Security Enhancement',
     category: 'Network Engineering',
-    description: 'Implemented multi-layer security measures including firewall, IDS/IPS, and VPN for enterprise network protection.',
-    technologies: ['Fortinet', 'IDS/IPS', 'VPN', 'Security Auditing'],
+    description: "Assisted in enhancing VSAT connectivity for the Philippine Navy's Maritime Situational Awareness System (MSAS) and supported the rollout of centrally managed endpoint security across Navy units.",
+    technologies: ['VSAT', 'Sophos Endpoint Security', 'Defense/Government IT'],
     icon: ShieldCheck,
     color: 'bg-red-500',
   },

@@ -12,9 +12,10 @@ const experience = [
     location: 'Makati, Philippines',
     period: 'November 2023 - Present',
     highlights: [
-      'Designed, implemented, and maintained network infrastructure.',
-      'Monitored NOC to resolve network issues proactively.',
-      'Configured and managed network devices and implemented security measures.',
+      "Contributed to the planning, field implementation, and ongoing maintenance of nationwide connectivity projects for the Department of Information and Communications Technology (DICT) and the Armed Forces of the Philippines (Philippine Navy), spanning satellite, wireless, and terrestrial internet infrastructure.",
+      'Supported field deployment of Low Earth Orbit satellite internet (PIALEOS) for underserved agrarian-reform barangays, remote public schools, and rural health facilities, and public-place Wi-Fi rollouts (WITS, PICS-PP/PICS-MUN, PROVINET) across multiple regions including Ilocos, MIMAROPA, and tourist destinations nationwide.',
+      "Assisted in enhancing VSAT connectivity for the Philippine Navy's Maritime Situational Awareness System and supported the rollout of centrally managed endpoint security across Navy units.",
+      'Continued monitoring the NOC to proactively resolve network issues, troubleshoot connectivity problems, and provide field technical support across deployed sites.',
     ],
   },
   {
