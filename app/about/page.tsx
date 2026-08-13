@@ -1,9 +1,67 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Target, GraduationCap, Download } from 'lucide-react';
+import { Target, GraduationCap, Download, Briefcase, Award, ExternalLink } from 'lucide-react';
 import profilePhoto from '../../public/denne-profile.jpg';
 
 const RESUME_PATH = '/Denne-Joshua-Suelan-Resume.pdf';
+
+const experience = [
+  {
+    role: 'Network Engineer',
+    company: 'REVLV Solutions Inc.',
+    location: 'Makati, Philippines',
+    period: 'November 2023 - Present',
+    highlights: [
+      'Designed, implemented, and maintained network infrastructure.',
+      'Monitored NOC to resolve network issues proactively.',
+      'Configured and managed network devices and implemented security measures.',
+    ],
+  },
+  {
+    role: 'UI/UX Designer',
+    company: 'IT-Americano Inc.',
+    location: 'Makati, Philippines',
+    period: 'October 2022 - February 2023',
+    highlights: [
+      'Created wireframes and mockups to visualize user interfaces.',
+      'Conducted user research and usability testing to gather feedback.',
+      'Collaborated with developers to ensure accurate implementation of designs.',
+    ],
+  },
+];
+
+const certifications = [
+  {
+    name: 'Black Belt – Small and Medium Business (Technical)',
+    issuer: 'Cisco Black Belt Academy',
+    date: 'January 2025',
+    url: 'https://cf-ap1.mindtickle.com/1860013409316147822/public-content/1741329673127appoutputcertificateFc2poVA1p3.png1a6A.webp',
+  },
+  {
+    name: 'Omada Certified Network Administrator (OCNA) – Wireless',
+    issuer: 'TP-Link',
+    date: 'Valid through November 2028',
+    url: 'https://training.tp-link.com/',
+  },
+  {
+    name: 'Sophos Central Endpoint Protection Certified Engineer v5.0',
+    issuer: 'Sophos',
+    date: 'April 2025',
+    url: 'https://sophos.netexam.com/certs/11017/10A970A8C77240CDBDE04765D1293CA9161655.pdf',
+  },
+  {
+    name: 'Sophos Detection and Response Certified Engineer v5.5',
+    issuer: 'Sophos',
+    date: 'April 2025',
+    url: 'https://sophos.netexam.com/certs/11017/10A970A8C77240CDBDE04765D1293CA9165643.pdf',
+  },
+  {
+    name: 'Software Testing Made Easy for Beginners (Project, JIRA, API)',
+    issuer: 'Udemy',
+    date: 'September 2023 · 102.5 hours',
+    url: 'https://www.udemy.com/certificate/UC-40b6371b-b0fe-464c-828f-6af566de5862/',
+  },
+];
 
 export const metadata = {
   title: 'About Me | Denne Joshua Suelan',
@@ -65,6 +123,63 @@ export default function AboutPage() {
                 <span className="text-sm text-[#10b981]">2018 - 2023</span>
               </p>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <h2 className="flex items-center gap-2 text-3xl font-bold mb-8 dark:text-white text-black">
+            <Briefcase className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Experience
+          </h2>
+          <div className="space-y-6">
+            {experience.map((job) => (
+              <div
+                key={job.company}
+                className="p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
+                  <h3 className="text-xl font-bold dark:text-white text-black">
+                    {job.role} <span className="text-[#10b981]">· {job.company}</span>
+                  </h3>
+                  <span className="text-sm dark:text-gray-400 text-gray-500 shrink-0">{job.period}</span>
+                </div>
+                <p className="text-sm text-[#10b981] mb-3">{job.location}</p>
+                <ul className="space-y-1.5">
+                  {job.highlights.map((point) => (
+                    <li key={point} className="flex gap-2 dark:text-gray-300 text-gray-600 text-sm leading-relaxed">
+                      <span className="text-[#10b981] mt-1">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <h2 className="flex items-center gap-2 text-3xl font-bold mb-8 dark:text-white text-black">
+            <Award className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Certifications
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert) => (
+              <a
+                key={cert.name}
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] transition-all duration-300"
+              >
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#10b981]/10 text-[#10b981] shrink-0">
+                    <Award className="w-5 h-5" strokeWidth={1.75} />
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#10b981] transition-colors shrink-0 mt-1" strokeWidth={1.75} />
+                </div>
+                <h3 className="font-bold dark:text-white text-black mb-1 leading-snug">{cert.name}</h3>
+                <p className="text-sm text-[#10b981]">{cert.issuer}</p>
+                <p className="text-xs dark:text-gray-400 text-gray-500 mt-1">{cert.date}</p>
+              </a>
+            ))}
           </div>
         </div>
 

@@ -19,7 +19,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="https://www.linkedin.com/in/denne-joshua-s-865823201/"
+                href="https://www.linkedin.com/in/denne-joshua-suelan-865823201/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-[#10b981] hover:text-white transition-all duration-300"
@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="space-y-2 dark:text-gray-400 text-gray-600">
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
-                <span>Caloocan City, Philippines</span>
+                <span>De Castro, Pasig City, Philippines</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />

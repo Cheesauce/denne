@@ -1,14 +1,15 @@
-import { FlaskConical, Palette, Globe } from 'lucide-react';
+import { FlaskConical, Palette, Globe, Code2 } from 'lucide-react';
 
 export const metadata = {
   title: 'Skills | Denne Joshua Suelan',
-  description: 'Explore Denne Joshua\'s technical skills in QA, UI/UX Design, and Network Engineering.',
+  description: 'Explore Denne Joshua\'s technical skills in QA, UI/UX Design, Network Engineering, and Development.',
 };
 
 const skillCategories = [
   { title: 'Quality Assurance', icon: FlaskConical, skills: ['Problem Solving', 'Manual Testing', 'Automated Testing', 'Python/Java Scripting', 'AI/ML Testing', 'Jira/Postman', 'Agile/Scrum'] },
   { title: 'UI/UX Design', icon: Palette, skills: ['User Research', 'Wireframing', 'Prototyping (Figma)', 'Visual Design', 'Accessibility (WCAG)', 'UX Writing', 'A/B Testing'] },
   { title: 'Network Engineer', icon: Globe, skills: ['TCP/IP & OSI', 'Routing/Switching', 'Troubleshooting (Wireshark)', 'Network Security', 'Cloud Networking', 'Automation (Python)'] },
+  { title: 'Programming & Development', icon: Code2, skills: ['HTML & CSS', 'JavaScript', 'Python', 'Git/GitHub', 'Visual Studio Code'] },
 ];
 
   
@@ -23,7 +24,7 @@ export default function SkillsPage() {
           </h1>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category) => (
             <div key={category.title} className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
               <div className="inline-flex items-center justify-center w-14 h-14 mb-4 rounded-2xl bg-[#10b981]/10 text-[#10b981]">

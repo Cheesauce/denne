@@ -64,7 +64,7 @@ export default function Home() {
               { number: '3+', label: 'Years Experience', icon: Briefcase },
               { number: '50+', label: 'Projects Completed', icon: Rocket },
               { number: '100%', label: 'Client Satisfaction', icon: Star },
-              { number: '3+', label: 'Certifications', icon: Award },
+              { number: '5+', label: 'Certifications', icon: Award },
             ].map((stat, index) => (
               <div
                 key={index}
