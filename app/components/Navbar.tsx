@@ -62,6 +62,7 @@ export default function Navbar() {
 
           <button
             onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all hover:rotate-180 duration-500"
           >
             {theme === 'dark' ? (
@@ -74,6 +75,8 @@ export default function Navbar() {
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileMenuOpen}
           className="md:hidden p-2"
         >
           {mobileMenuOpen ? (

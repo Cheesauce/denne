@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Target, GraduationCap } from 'lucide-react';
+import profilePhoto from '../../public/denne-profile.jpg';
 
 export const metadata = {
   title: 'About Me | Denne Joshua Suelan',
@@ -23,7 +25,14 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-square rounded-3xl bg-gradient-to-br from-[#10b981]/20 to-[#10b981]/5 dark:from-[#10b981]/10 dark:to-transparent p-8 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-8xl mb-4"><img src="denne-profile.jpg" alt="denne's picture" /></div>
+                <div className="mb-4 overflow-hidden rounded-2xl">
+                  <Image
+                    src={profilePhoto}
+                    alt="Denne Joshua B. Suelan"
+                    className="w-full h-auto"
+                    priority
+                  />
+                </div>
                 <div className="text-2xl font-bold dark:text-white text-black">
                   Denne Joshua B. Suelan
                 </div>

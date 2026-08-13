@@ -1,12 +1,7 @@
-'use client';
-
 import Link from 'next/link';
-import { useTheme } from './components/ThemeProvider';
 import { Briefcase, Rocket, Star, Award, FlaskConical, Palette, Globe } from 'lucide-react';
 
 export default function Home() {
-  const { theme } = useTheme();
-
   return (
     <main className="min-h-screen">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

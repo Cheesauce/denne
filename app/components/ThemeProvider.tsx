@@ -17,6 +17,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Reading localStorage (an external system unavailable during SSR) and
+    // syncing it into state on mount is the standard fix for the
+    // hydration-mismatch this component guards against with `mounted`.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);

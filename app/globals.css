@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Ties Tailwind's `dark:` variant to the manually-toggled `.dark` class on
+   <html> instead of the OS `prefers-color-scheme` media query (the v4
+   default). Without this, the theme toggle only swapped the CSS variables
+   below while every `dark:` utility class kept following the visitor's OS
+   setting, so the toggle and the OS preference could contradict each other. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;

@@ -1,10 +1,12 @@
-import Link from 'next/link';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import ContactForm from './ContactForm';
 
 export const metadata = {
   title: 'Contact | Denne Joshua Suelan',
   description: 'Get in touch with Denne Joshua B. Suelan for QA, UI/UX, or Network Engineering projects.',
 };
+
+const CONTACT_EMAIL = 'joshua.suelan@gmail.com';
 
 export default function ContactPage() {
   return (
@@ -27,21 +29,14 @@ export default function ContactPage() {
                 <Phone className="w-5 h-5 text-[#10b981] shrink-0" strokeWidth={1.75} /> 0976-477-9947
               </p>
               <p className="flex items-center gap-2 dark:text-gray-400 text-gray-600">
-                <Mail className="w-5 h-5 text-[#10b981] shrink-0" strokeWidth={1.75} /> joshua.suelan@gmail.com
+                <Mail className="w-5 h-5 text-[#10b981] shrink-0" strokeWidth={1.75} /> {CONTACT_EMAIL}
               </p>
             </div>
           </div>
 
           <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-black">Send a Message</h2>
-            <form className="space-y-4">
-              <input type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 outline-none focus:border-[#10b981]" />
-              <input type="email" placeholder="Your Email" className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 outline-none focus:border-[#10b981]" />
-              <textarea placeholder="Your Message" rows={4} className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 outline-none focus:border-[#10b981]"></textarea>
-              <button type="submit" className="w-full py-4 bg-[#10b981] text-white font-semibold rounded-xl hover:bg-[#059669] transition-all">
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>
