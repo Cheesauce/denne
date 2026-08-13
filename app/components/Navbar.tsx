@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
 import { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Download } from 'lucide-react';
+
+const RESUME_PATH = '/Denne-Joshua-Suelan-Resume.pdf';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -60,6 +62,14 @@ export default function Navbar() {
             </Link>
           ))}
 
+          <a
+            href={RESUME_PATH}
+            download
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#10b981] text-white text-sm font-semibold hover:bg-[#059669] transition-all duration-300"
+          >
+            <Download className="w-4 h-4" strokeWidth={1.75} /> Resume
+          </a>
+
           <button
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -104,6 +114,14 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
+            <a
+              href={RESUME_PATH}
+              download
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 px-4 py-3 rounded-full bg-[#10b981] text-white text-lg font-semibold justify-center"
+            >
+              <Download className="w-5 h-5" strokeWidth={1.75} /> Resume
+            </a>
             <button
               onClick={toggleTheme}
               className="flex items-center gap-2 text-lg font-medium dark:text-gray-300 text-gray-600"

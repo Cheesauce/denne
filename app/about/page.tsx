@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Target, GraduationCap } from 'lucide-react';
+import { Target, GraduationCap, Download } from 'lucide-react';
 import profilePhoto from '../../public/denne-profile.jpg';
+
+const RESUME_PATH = '/Denne-Joshua-Suelan-Resume.pdf';
 
 export const metadata = {
   title: 'About Me | Denne Joshua Suelan',
@@ -66,10 +68,17 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="mt-20 text-center">
+        <div className="mt-20 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#10b981] text-white font-semibold rounded-full hover:bg-[#059669] transition-all duration-300">
             Let&apos;s Work Together
           </Link>
+          <a
+            href={RESUME_PATH}
+            download
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-black dark:border-white text-black dark:text-white font-semibold rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+          >
+            <Download className="w-5 h-5" strokeWidth={1.75} /> Download Resume
+          </a>
         </div>
       </div>
     </main>
