@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 export const metadata = {
   title: 'Contact | Denne Joshua Suelan',
@@ -19,9 +20,15 @@ export default function ContactPage() {
           <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-black">Contact Information</h2>
             <div className="space-y-4">
-              <p className="dark:text-gray-400 text-gray-600">📍 Caloocan City, Philippines</p>
-              <p className="dark:text-gray-400 text-gray-600">📱 0976-477-9947</p>
-              <p className="dark:text-gray-400 text-gray-600">✉️ joshua.suelan@gmail.com</p>
+              <p className="flex items-center gap-2 dark:text-gray-400 text-gray-600">
+                <MapPin className="w-5 h-5 text-[#10b981] shrink-0" strokeWidth={1.75} /> Caloocan City, Philippines
+              </p>
+              <p className="flex items-center gap-2 dark:text-gray-400 text-gray-600">
+                <Phone className="w-5 h-5 text-[#10b981] shrink-0" strokeWidth={1.75} /> 0976-477-9947
+              </p>
+              <p className="flex items-center gap-2 dark:text-gray-400 text-gray-600">
+                <Mail className="w-5 h-5 text-[#10b981] shrink-0" strokeWidth={1.75} /> joshua.suelan@gmail.com
+              </p>
             </div>
           </div>
 

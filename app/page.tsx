@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useTheme } from './components/ThemeProvider';
+import { Briefcase, Rocket, Star, Award, FlaskConical, Palette, Globe } from 'lucide-react';
 
 export default function Home() {
   const { theme } = useTheme();
@@ -65,16 +66,18 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: '3+', label: 'Years Experience', icon: '💼' },
-              { number: '50+', label: 'Projects Completed', icon: '🚀' },
-              { number: '100%', label: 'Client Satisfaction', icon: '⭐' },
-              { number: '3+', label: 'Certifications', icon: '🏆' },
+              { number: '3+', label: 'Years Experience', icon: Briefcase },
+              { number: '50+', label: 'Projects Completed', icon: Rocket },
+              { number: '100%', label: 'Client Satisfaction', icon: Star },
+              { number: '3+', label: 'Certifications', icon: Award },
             ].map((stat, index) => (
               <div
                 key={index}
                 className="text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
-                <div className="text-4xl mb-2">{stat.icon}</div>
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 rounded-xl bg-[#10b981]/10 text-[#10b981]">
+                  <stat.icon className="w-6 h-6" strokeWidth={1.75} />
+                </div>
                 <div className="text-4xl font-bold text-[#10b981] mb-2">{stat.number}</div>
                 <div className="dark:text-gray-400 text-gray-600">{stat.label}</div>
               </div>
@@ -92,17 +95,17 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: '🧪',
+                icon: FlaskConical,
                 title: 'Quality Assurance',
                 description: 'Comprehensive testing strategies including manual testing, automated testing, regression testing, and performance testing to ensure software quality.',
               },
               {
-                icon: '🎨',
+                icon: Palette,
                 title: 'UI/UX Design',
                 description: 'Creating intuitive and visually appealing user interfaces through wireframing, prototyping, and user research.',
               },
               {
-                icon: '🌐',
+                icon: Globe,
                 title: 'Network Engineering',
                 description: 'Designing, implementing, and maintaining network infrastructure with a focus on security and performance.',
               },
@@ -111,8 +114,8 @@ export default function Home() {
                 key={index}
                 className="group p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] transition-all duration-300 hover:shadow-2xl hover:shadow-[#10b981]/10"
               >
-                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
+                <div className="inline-flex items-center justify-center w-14 h-14 mb-6 rounded-2xl bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
+                  <service.icon className="w-7 h-7" strokeWidth={1.75} />
                 </div>
                 <h3 className="text-xl font-bold mb-4 dark:text-white text-black">
                   {service.title}

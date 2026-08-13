@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -41,9 +42,7 @@ export default function Footer() {
                 href="mailto:joshua.suelan@gmail.com"
                 className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-[#10b981] hover:text-white transition-all duration-300"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+                <Mail className="w-5 h-5" strokeWidth={1.75} />
               </a>
             </div>
           </div>
@@ -62,15 +61,15 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 dark:text-white text-black">Contact</h4>
             <ul className="space-y-2 dark:text-gray-400 text-gray-600">
               <li className="flex items-center gap-2">
-                <span>📍</span>
+                <MapPin className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
                 <span>Caloocan City, Philippines</span>
               </li>
               <li className="flex items-center gap-2">
-                <span>📱</span>
+                <Phone className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
                 <span>0976-477-9947</span>
               </li>
               <li className="flex items-center gap-2">
-                <span>✉️</span>
+                <Mail className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
                 <span>joshua.suelan@gmail.com</span>
               </li>
             </ul>

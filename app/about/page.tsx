@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Target, GraduationCap } from 'lucide-react';
 
 export const metadata = {
   title: 'About Me | Denne Joshua Suelan',
@@ -33,7 +34,9 @@ export default function AboutPage() {
 
           <div className="space-y-8">
             <div className="p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-              <h2 className="text-2xl font-bold mb-4 dark:text-white text-black">🎯 Objective</h2>
+              <h2 className="flex items-center gap-2 text-2xl font-bold mb-4 dark:text-white text-black">
+                <Target className="w-6 h-6 text-[#10b981]" strokeWidth={1.75} /> Objective
+              </h2>
               <p className="dark:text-gray-300 text-gray-600 leading-relaxed">
                 Aspiring to join a progressive IT organization as a Quality Assurance Engineer 
                 to contribute my expertise in software testing methodologies and drive product quality.
@@ -41,7 +44,9 @@ export default function AboutPage() {
             </div>
 
             <div className="p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-              <h2 className="text-2xl font-bold mb-4 dark:text-white text-black">🎓 Education</h2>
+              <h2 className="flex items-center gap-2 text-2xl font-bold mb-4 dark:text-white text-black">
+                <GraduationCap className="w-6 h-6 text-[#10b981]" strokeWidth={1.75} /> Education
+              </h2>
               <p className="dark:text-gray-300 text-gray-600">
                 Bachelor&apos;s Degree in Computer Engineering<br/>
                 <span className="text-[#10b981]"> Technological University of the Philippines<br/></span>
