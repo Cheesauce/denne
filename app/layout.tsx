@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
 import PageTransition from "./components/PageTransition";
+import InteractiveGrid from "./components/InteractiveGrid";
 
 export const metadata = {
   title: "Denne Joshua B. Suelan | QA Engineer & UI/UX Designer",
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
+          <InteractiveGrid />
           <div className="grain-overlay" aria-hidden="true" />
           <CustomCursor />
           <Navbar />

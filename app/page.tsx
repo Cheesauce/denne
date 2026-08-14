@@ -44,8 +44,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-black -z-10" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:50px_50px] -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-gray-50/60 to-gray-100/70 dark:from-black/70 dark:via-gray-900/60 dark:to-black/70 -z-10" />
         <div className="absolute top-1/3 right-0 w-96 h-96 bg-[#10b981]/10 rounded-full blur-3xl animate-float -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 w-full">

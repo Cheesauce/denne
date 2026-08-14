@@ -220,6 +220,16 @@ body {
   font-family: var(--font-mono);
 }
 
+/* Fixed, full-viewport dot-grid canvas (see InteractiveGrid.tsx). Negative
+   z-index keeps it behind every normal-flow element on the page — it only
+   shows through wherever a section doesn't paint its own background. */
+.interactive-grid-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* Subtle film-grain texture overlay for a less "flat SaaS" feel. */
 .grain-overlay {
   position: fixed;
