@@ -9,6 +9,7 @@ export type Project = {
   icon: LucideIcon;
   color: string;
   url?: string;
+  image?: string;
 };
 
 export const projects: Project[] = [
@@ -102,6 +103,7 @@ export const projects: Project[] = [
     technologies: ['Figma', 'Mobile UI', 'Prototyping', 'E-Commerce'],
     icon: ShoppingBag,
     color: 'bg-amber-500',
+    image: '/projects/food-delivery-app.png',
   },
   {
     id: 11,
@@ -111,6 +113,7 @@ export const projects: Project[] = [
     technologies: ['Figma', 'Brand Identity', 'Landing Page Design', 'Community Platforms'],
     icon: Users,
     color: 'bg-rose-500',
+    image: '/projects/big-brother-guild.png',
   },
 ];
 

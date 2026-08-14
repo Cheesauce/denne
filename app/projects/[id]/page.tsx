@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { projects, getProjectById } from '../projects-data';
@@ -58,6 +59,18 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight dark:text-white text-black">
           {project.title}
         </h1>
+
+        {project.image && (
+          <div className="mb-8 border-2 border-black dark:border-white overflow-hidden bg-gray-100 dark:bg-gray-900 brutal-shadow">
+            <Image
+              src={project.image}
+              alt={`${project.title} screenshot`}
+              width={1000}
+              height={700}
+              className="w-full h-auto object-cover object-top"
+            />
+          </div>
+        )}
 
         <p className="text-lg dark:text-gray-300 text-gray-600 leading-relaxed mb-8">
           {project.description}

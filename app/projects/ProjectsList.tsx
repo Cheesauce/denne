@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { projects, categories } from './projects-data';
@@ -52,6 +53,17 @@ export default function ProjectsList() {
               />
 
               <div className="relative z-10 pointer-events-none">
+                {project.image && (
+                  <div className="-mx-6 -mt-6 mb-4 h-40 border-b-2 border-black dark:border-white overflow-hidden bg-gray-100 dark:bg-gray-900">
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      width={600}
+                      height={320}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <span className="index-number text-2xl">{String(project.id).padStart(2, '0')}</span>
