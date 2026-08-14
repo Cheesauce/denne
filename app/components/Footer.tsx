@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import CopyButton from './CopyButton';
+
+const CONTACT_EMAIL = 'joshua.suelan@gmail.com';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,7 +22,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="https://www.linkedin.com/in/denne-joshua-suelan-865823201/"
+                href="https://www.linkedin.com/in/denne-joshua-s-865823201/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 border-2 border-black dark:border-white bg-gray-200 dark:bg-gray-800 hover:bg-[#10b981] hover:text-white transition-all duration-300"
@@ -39,7 +42,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:joshua.suelan@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="p-2 border-2 border-black dark:border-white bg-gray-200 dark:bg-gray-800 hover:bg-[#10b981] hover:text-white transition-all duration-300"
               >
                 <Mail className="w-5 h-5" strokeWidth={1.75} />
@@ -62,7 +65,7 @@ export default function Footer() {
             <ul className="space-y-2 dark:text-gray-400 text-gray-600">
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
-                <span>De Castro, Pasig City, Philippines</span>
+                <span>Pasig City, Philippines</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
@@ -70,7 +73,10 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#10b981] shrink-0" strokeWidth={1.75} />
-                <span>joshua.suelan@gmail.com</span>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-[#10b981] transition-colors">
+                  {CONTACT_EMAIL}
+                </a>
+                <CopyButton text={CONTACT_EMAIL} label="Copy email address" />
               </li>
             </ul>
           </div>
