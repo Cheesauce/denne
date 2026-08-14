@@ -1,4 +1,4 @@
-import { FlaskConical, Palette, Globe, Code2, Sparkles, Compass } from 'lucide-react';
+import { FlaskConical, Palette, Globe, Code2, BrainCircuit, Sparkles, Compass } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import TiltCard from '../components/TiltCard';
 import SkillBar from './SkillBar';
@@ -12,7 +12,7 @@ export const metadata = {
 // every category below.
 const coreStack = [
   'Manual & Automated Testing', 'Python', 'Figma', 'Wireshark', 'Postman',
-  'JavaScript', 'Git/GitHub', 'TCP/IP & OSI',
+  'JavaScript', 'Git/GitHub', 'TCP/IP & OSI', 'Multi-LLM Workflows',
 ];
 
 const skillCategories = [
@@ -69,10 +69,22 @@ const skillCategories = [
       { name: 'Visual Studio Code', level: 'Advanced', percent: 85 },
     ],
   },
+  {
+    title: 'AI & LLM Tooling',
+    icon: BrainCircuit,
+    blurb: 'Using multiple large language models as a daily, professional part of the toolkit — not just casual chat, but structured prompting, workflow automation, and AI-assisted QA and development.',
+    skills: [
+      { name: 'Prompt Engineering', level: 'Advanced', percent: 85 },
+      { name: 'Claude / ChatGPT / Gemini', level: 'Advanced', percent: 85 },
+      { name: 'AI-Assisted Testing', level: 'Proficient', percent: 70 },
+      { name: 'AI-Assisted Development', level: 'Proficient', percent: 70 },
+      { name: 'Workflow Automation', level: 'Proficient', percent: 65 },
+    ],
+  },
 ];
 
 const currentlySharpening = [
-  'AI-assisted test automation',
+  'Agentic AI workflows & orchestration',
   'Cloud networking (AWS/Azure)',
   'Advanced React & Next.js',
 ];
@@ -87,8 +99,8 @@ export default function SkillsPage() {
             My <span className="text-[#10b981]">Skills</span>
           </h1>
           <p className="text-xl dark:text-gray-400 text-gray-600 max-w-2xl mx-auto">
-            A working set built across QA, UI/UX, network engineering, and development —
-            sharpened on real projects, not just tutorials.
+            A working set built across QA, UI/UX, network engineering, development, and
+            AI-assisted workflows — sharpened on real projects, not just tutorials.
           </p>
         </Reveal>
 
@@ -105,7 +117,7 @@ export default function SkillsPage() {
           </div>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <Reveal key={category.title} delay={index * 0.08}>
               <TiltCard className="group h-full p-8 border-2 border-black dark:border-white bg-white dark:bg-gray-800 hover:border-[#10b981] transition-all duration-300 brutal-shadow">
