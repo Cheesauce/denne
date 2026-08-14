@@ -48,29 +48,82 @@ export default function InteractiveGrid() {
     let mouseX = -9999;
     let mouseY = -9999;
     let rafId: number | null = null;
+    // Precomputed tile centers, rebuilt only on resize (not every frame).
+    let tiles: { x: number; y: number }[] = [];
+    // Static "resting" texture, rendered once per resize/theme change onto
+    // an off-screen canvas. Redrawing every one of the (often 5,000+) tiles
+    // on every single mousemove frame was the actual source of the lag —
+    // now each frame just blits this cached bitmap instead of re-tracing
+    // every scale shape from scratch.
+    const baseCanvas = document.createElement('canvas');
+    const baseCtx = baseCanvas.getContext('2d');
 
     // Traces one scale: a rounded-top, tapered-bottom "shield" shape
     // centered at (0, 0) in local space, before the caller's transform.
-    const traceScale = (w: number, h: number) => {
-      ctx.beginPath();
-      ctx.moveTo(-w / 2, -h / 2);
-      ctx.quadraticCurveTo(0, -h / 2 - h * 0.32, w / 2, -h / 2);
-      ctx.quadraticCurveTo(w * 0.42, h * 0.15, 0, h / 2);
-      ctx.quadraticCurveTo(-w * 0.42, h * 0.15, -w / 2, -h / 2);
-      ctx.closePath();
+    const traceScale = (c: CanvasRenderingContext2D, w: number, h: number) => {
+      c.beginPath();
+      c.moveTo(-w / 2, -h / 2);
+      c.quadraticCurveTo(0, -h / 2 - h * 0.32, w / 2, -h / 2);
+      c.quadraticCurveTo(w * 0.42, h * 0.15, 0, h / 2);
+      c.quadraticCurveTo(-w * 0.42, h * 0.15, -w / 2, -h / 2);
+      c.closePath();
+    };
+
+    const computeTiles = () => {
+      const cols = Math.ceil(width / COL_STEP) + 2;
+      const rows = Math.ceil(height / ROW_STEP) + 2;
+      const next: { x: number; y: number }[] = [];
+      for (let j = rows - 1; j >= 0; j--) {
+        const y = j * ROW_STEP;
+        const rowOffset = (j % 2) * (COL_STEP / 2);
+        for (let i = 0; i < cols; i++) {
+          next.push({ x: i * COL_STEP + rowOffset - COL_STEP, y });
+        }
+      }
+      tiles = next;
+    };
+
+    // Renders the full at-rest plate texture once onto the off-screen
+    // canvas. Only re-run on resize or theme change, never per-frame.
+    const renderBaseTexture = () => {
+      if (!baseCtx) return;
+      baseCanvas.width = canvas.width;
+      baseCanvas.height = canvas.height;
+      baseCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      baseCtx.clearRect(0, 0, width, height);
+
+      const isDark = themeRef.current === 'dark';
+      const baseColor = isDark ? '52, 211, 153' : '5, 150, 105';
+      const restAlpha = isDark ? 0.06 : 0.055;
+      const strokeAlpha = isDark ? 0.1 : 0.09;
+
+      for (const { x, y } of tiles) {
+        baseCtx.save();
+        baseCtx.translate(x, y);
+        traceScale(baseCtx, SCALE_W, SCALE_H);
+        baseCtx.fillStyle = `rgba(${baseColor}, ${restAlpha})`;
+        baseCtx.fill();
+        baseCtx.lineWidth = 1;
+        baseCtx.strokeStyle = `rgba(${baseColor}, ${strokeAlpha})`;
+        baseCtx.stroke();
+        baseCtx.restore();
+      }
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
       const isDark = themeRef.current === 'dark';
-      const baseColor = isDark ? '52, 211, 153' : '5, 150, 105';
       const activeColor = isDark ? '16, 185, 129' : '4, 120, 87';
       const restAlpha = isDark ? 0.06 : 0.055;
-      const strokeAlpha = isDark ? 0.1 : 0.09;
 
-      const cols = Math.ceil(width / COL_STEP) + 2;
-      const rows = Math.ceil(height / ROW_STEP) + 2;
+      // Blit the cached resting texture in one shot instead of re-tracing
+      // every tile. Drawn in raw pixel space (transform reset) since the
+      // off-screen canvas's backing pixels already account for dpr.
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.drawImage(baseCanvas, 0, 0);
+      ctx.restore();
 
       // Ambient glow under the cursor, drawn first so scales sit on top.
       // Kept fairly faint — this sits behind page text (including the
@@ -84,30 +137,13 @@ export default function InteractiveGrid() {
         ctx.fillRect(0, 0, width, height);
       }
 
-      // Pass 1 — the full plate texture at rest. Drawn bottom row to top
-      // row so each row overlaps the tips of the row below it, like
-      // shingles / real reptile scales.
+      // Only the handful of tiles within the reaction radius need to be
+      // singled out — a cheap distance check per tile, no drawing here.
       const active: { x: number; y: number; t: number }[] = [];
-      for (let j = rows - 1; j >= 0; j--) {
-        const y = j * ROW_STEP;
-        const rowOffset = (j % 2) * (COL_STEP / 2);
-        for (let i = 0; i < cols; i++) {
-          const x = i * COL_STEP + rowOffset - COL_STEP;
-          const dist = Math.hypot(x - mouseX, y - mouseY);
-          const t = Math.max(0, 1 - dist / FALLOFF);
-
-          ctx.save();
-          ctx.translate(x, y);
-          traceScale(SCALE_W, SCALE_H);
-          ctx.fillStyle = `rgba(${baseColor}, ${restAlpha})`;
-          ctx.fill();
-          ctx.lineWidth = 1;
-          ctx.strokeStyle = `rgba(${baseColor}, ${strokeAlpha})`;
-          ctx.stroke();
-          ctx.restore();
-
-          if (t > 0.04) active.push({ x, y, t });
-        }
+      for (const { x, y } of tiles) {
+        const dist = Math.hypot(x - mouseX, y - mouseY);
+        const t = Math.max(0, 1 - dist / FALLOFF);
+        if (t > 0.04) active.push({ x, y, t });
       }
 
       // Pass 2 — re-draw just the reacting scales, lifted/tilted/brightened
@@ -135,7 +171,7 @@ export default function InteractiveGrid() {
           ctx.shadowOffsetY = 2 * eased;
         }
 
-        traceScale(SCALE_W, SCALE_H);
+        traceScale(ctx, SCALE_W, SCALE_H);
         ctx.fillStyle = `rgba(${activeColor}, ${alpha})`;
         ctx.fill();
         ctx.shadowColor = 'transparent';
@@ -156,6 +192,8 @@ export default function InteractiveGrid() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      computeTiles();
+      renderBaseTexture();
       draw();
     };
 
