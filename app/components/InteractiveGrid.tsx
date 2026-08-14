@@ -3,14 +3,14 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from './ThemeProvider';
 
-const SCALE_W = 34; // resting scale width
-const SCALE_H = 30; // resting scale height
+const SCALE_W = 20; // resting scale width
+const SCALE_H = 18; // resting scale height
 const COL_STEP = SCALE_W * 0.86; // horizontal distance between scale centers
 const ROW_STEP = SCALE_H * 0.58; // vertical distance between rows (overlap)
-const FALLOFF = 120; // px — distance at which the reaction fully fades out
-const MAX_LIFT = 10; // px a fully-active scale pushes outward from the cursor
-const MAX_TILT = 0.22; // radians a fully-active scale rotates
-const MAX_SCALE = 1.5; // size multiplier at full activation
+const FALLOFF = 100; // px — distance at which the reaction fully fades out
+const MAX_LIFT = 6; // px a fully-active scale pushes outward from the cursor
+const MAX_TILT = 0.18; // radians a fully-active scale rotates
+const MAX_SCALE = 1.35; // size multiplier at full activation
 
 /**
  * Fixed, full-viewport background made of overlapping "reptile scale" /
@@ -66,8 +66,8 @@ export default function InteractiveGrid() {
       const isDark = themeRef.current === 'dark';
       const baseColor = isDark ? '52, 211, 153' : '5, 150, 105';
       const activeColor = isDark ? '16, 185, 129' : '4, 120, 87';
-      const restAlpha = isDark ? 0.1 : 0.09;
-      const strokeAlpha = isDark ? 0.16 : 0.14;
+      const restAlpha = isDark ? 0.06 : 0.055;
+      const strokeAlpha = isDark ? 0.1 : 0.09;
 
       const cols = Math.ceil(width / COL_STEP) + 2;
       const rows = Math.ceil(height / ROW_STEP) + 2;
@@ -78,7 +78,7 @@ export default function InteractiveGrid() {
       // glow would wash out contrast right where the cursor happens to be.
       if (mouseX > -9000) {
         const glow = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, FALLOFF * 1.3);
-        glow.addColorStop(0, `rgba(${activeColor}, ${isDark ? 0.07 : 0.05})`);
+        glow.addColorStop(0, `rgba(${activeColor}, ${isDark ? 0.045 : 0.035})`);
         glow.addColorStop(1, `rgba(${activeColor}, 0)`);
         ctx.fillStyle = glow;
         ctx.fillRect(0, 0, width, height);
@@ -122,7 +122,7 @@ export default function InteractiveGrid() {
         const lift = MAX_LIFT * eased;
         const tilt = nx * MAX_TILT * eased; // lean left/right away from the cursor
         const scaleMul = 1 + (MAX_SCALE - 1) * eased;
-        const alpha = restAlpha + (0.5 - restAlpha) * eased;
+        const alpha = restAlpha + (0.32 - restAlpha) * eased;
 
         ctx.save();
         ctx.translate(x + nx * lift, y + ny * lift);
@@ -130,9 +130,9 @@ export default function InteractiveGrid() {
         ctx.scale(scaleMul, scaleMul);
 
         if (eased > 0.15) {
-          ctx.shadowColor = `rgba(${activeColor}, ${0.5 * eased})`;
-          ctx.shadowBlur = 14 * eased;
-          ctx.shadowOffsetY = 3 * eased;
+          ctx.shadowColor = `rgba(${activeColor}, ${0.3 * eased})`;
+          ctx.shadowBlur = 8 * eased;
+          ctx.shadowOffsetY = 2 * eased;
         }
 
         traceScale(SCALE_W, SCALE_H);
@@ -140,8 +140,8 @@ export default function InteractiveGrid() {
         ctx.fill();
         ctx.shadowColor = 'transparent';
         ctx.shadowBlur = 0;
-        ctx.lineWidth = 1.25;
-        ctx.strokeStyle = `rgba(${isDark ? '255,255,255' : '6,78,59'}, ${0.35 * eased})`;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = `rgba(${isDark ? '255,255,255' : '6,78,59'}, ${0.22 * eased})`;
         ctx.stroke();
         ctx.restore();
       }
