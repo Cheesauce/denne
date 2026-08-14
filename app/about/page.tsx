@@ -1,12 +1,35 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Target, GraduationCap, Download, Briefcase, Award, ExternalLink } from 'lucide-react';
+import { Target, GraduationCap, Download, Briefcase, Award, ExternalLink, Brain, Eye, Layers, UserCircle } from 'lucide-react';
 import profilePhoto from '../../public/denne-profile.jpg';
 import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
 import TiltCard from '../components/TiltCard';
 
 const RESUME_PATH = '/Denne-Joshua-Suelan-Resume.pdf';
+
+const designPrinciples = [
+  {
+    icon: Eye,
+    title: 'Attention Span',
+    description: 'Human attention is short — good UI/UX prioritizes what matters, uses visual cues, and earns focus rather than assuming it.',
+  },
+  {
+    icon: Brain,
+    title: 'Cognitive Load',
+    description: 'People have limited mental bandwidth, so designs should present information clearly, in an organized, easily digestible way.',
+  },
+  {
+    icon: Layers,
+    title: 'Visual Hierarchy',
+    description: "Users focus on what stands out. A clear hierarchy guides attention to key elements, like calls to action, instead of leaving it to chance.",
+  },
+  {
+    icon: UserCircle,
+    title: 'User Personas',
+    description: 'Detailed personas built from demographic and behavioral data help tailor a design to how real users actually decide.',
+  },
+];
 
 const experience = [
   {
@@ -194,6 +217,28 @@ export default function AboutPage() {
                     <p className="text-sm text-[#10b981]">{cert.issuer}</p>
                     <p className="text-xs dark:text-gray-400 text-gray-500 mt-1">{cert.date}</p>
                   </a>
+                </TiltCard>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <Reveal>
+            <p className="eyebrow text-[#10b981] mb-4">Philosophy</p>
+            <h2 className="flex items-center gap-3 text-3xl md:text-4xl font-bold mb-8 dark:text-white text-black">
+              <Brain className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Understanding Human Decision-Making
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {designPrinciples.map((principle, index) => (
+              <Reveal key={principle.title} delay={index * 0.08}>
+                <TiltCard className="h-full p-6 border-2 border-black dark:border-white bg-white dark:bg-gray-800 brutal-shadow">
+                  <div className="inline-flex items-center justify-center w-12 h-12 mb-4 border-2 border-black dark:border-white bg-[#10b981]/10 text-[#10b981]">
+                    <principle.icon className="w-6 h-6" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="font-bold mb-2 dark:text-white text-black">{principle.title}</h3>
+                  <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed">{principle.description}</p>
                 </TiltCard>
               </Reveal>
             ))}

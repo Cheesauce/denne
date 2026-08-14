@@ -1,4 +1,4 @@
-import { ShoppingCart, Landmark, HeartPulse, Satellite, Bot, Plane, ShieldCheck, Link2, Car, type LucideIcon } from 'lucide-react';
+import { ShoppingCart, Landmark, HeartPulse, Satellite, Bot, Plane, ShieldCheck, Link2, Car, ShoppingBag, Users, type LucideIcon } from 'lucide-react';
 
 export type Project = {
   id: number;
@@ -93,6 +93,24 @@ export const projects: Project[] = [
     icon: Car,
     color: 'bg-cyan-500',
     url: 'https://github.com/josux/vreds',
+  },
+  {
+    id: 10,
+    title: 'Food Delivery App UI Design',
+    category: 'UI/UX Design',
+    description: 'Designed the mobile UI for a food-delivery app as part of a national UI/UX design competition, reaching the finals. Covered end-to-end flows for browsing nearby shops and checkout, alongside related e-commerce, business, and SDG-aligned concept designs.',
+    technologies: ['Figma', 'Mobile UI', 'Prototyping', 'E-Commerce'],
+    icon: ShoppingBag,
+    color: 'bg-amber-500',
+  },
+  {
+    id: 11,
+    title: 'Big Brother Guild — Community Platform',
+    category: 'UI/UX Design',
+    description: 'Designed the brand identity and landing page for Big Brother Guild, a Discord-based community built around NFT games that support fostering, assistance, and stability initiatives.',
+    technologies: ['Figma', 'Brand Identity', 'Landing Page Design', 'Community Platforms'],
+    icon: Users,
+    color: 'bg-rose-500',
   },
 ];
 
