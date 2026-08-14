@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
 import { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, Download } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const RESUME_PATH = '/Denne-Joshua-Suelan-Resume.pdf';
 
@@ -34,14 +35,14 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/80 dark:bg-black/80 glass py-4'
+          ? 'bg-white/80 dark:bg-black/80 glass py-3'
           : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tighter hover:scale-105 transition-transform"
+          className="text-3xl font-bold tracking-tighter hover:scale-105 transition-transform"
         >
           <span className="text-[#10b981]">DJ</span>
           <span className="dark:text-white text-black">.</span>
@@ -52,13 +53,20 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[#10b981] ${
+              className={`relative py-1 text-sm font-medium tracking-wide transition-colors hover:text-[#10b981] ${
                 pathname === link.href
                   ? 'text-[#10b981]'
                   : 'dark:text-gray-300 text-gray-600'
               }`}
             >
               {link.name}
+              {pathname === link.href && (
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute -bottom-1 left-0 right-0 h-px bg-[#10b981]"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
 
@@ -97,48 +105,56 @@ export default function Navbar() {
         </button>
       </div>
 
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-black border-b dark:border-gray-800">
-          <div className="flex flex-col p-6 gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-black border-b dark:border-gray-800"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-lg font-medium ${
+                    pathname === link.href
+                      ? 'text-[#10b981]'
+                      : 'dark:text-gray-300 text-gray-600'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <a
+                href={RESUME_PATH}
+                download
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-lg font-medium ${
-                  pathname === link.href
-                    ? 'text-[#10b981]'
-                    : 'dark:text-gray-300 text-gray-600'
-                }`}
+                className="flex items-center gap-2 px-4 py-3 rounded-full bg-[#10b981] text-white text-lg font-semibold justify-center"
               >
-                {link.name}
-              </Link>
-            ))}
-            <a
-              href={RESUME_PATH}
-              download
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 px-4 py-3 rounded-full bg-[#10b981] text-white text-lg font-semibold justify-center"
-            >
-              <Download className="w-5 h-5" strokeWidth={1.75} /> Resume
-            </a>
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-2 text-lg font-medium dark:text-gray-300 text-gray-600"
-            >
-              {theme === 'dark' ? (
-                <>
-                  <Sun className="w-5 h-5 text-yellow-500" strokeWidth={1.75} /> Light Mode
-                </>
-              ) : (
-                <>
-                  <Moon className="w-5 h-5 text-gray-700" strokeWidth={1.75} /> Dark Mode
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-      )}
+                <Download className="w-5 h-5" strokeWidth={1.75} /> Resume
+              </a>
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 text-lg font-medium dark:text-gray-300 text-gray-600"
+              >
+                {theme === 'dark' ? (
+                  <>
+                    <Sun className="w-5 h-5 text-yellow-500" strokeWidth={1.75} /> Light Mode
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-5 h-5 text-gray-700" strokeWidth={1.75} /> Dark Mode
+                  </>
+                )}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

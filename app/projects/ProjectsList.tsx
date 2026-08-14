@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { projects, categories } from './projects-data';
 import { GitHubIcon } from './GitHubIcon';
+import Reveal from '../components/Reveal';
 
 export default function ProjectsList() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -33,59 +34,61 @@ export default function ProjectsList() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {visibleProjects.map((project) => (
-          <div
-            key={project.id}
-            className="group p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] transition-all duration-300 hover:shadow-2xl hover:shadow-[#10b981]/10 hover:-translate-y-2"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div className={`w-16 h-16 rounded-2xl ${project.color} flex items-center justify-center text-white`}>
-                <project.icon className="w-7 h-7" strokeWidth={1.75} />
-              </div>
-              <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-medium dark:text-gray-300 text-gray-600">
-                {project.category}
-              </span>
-            </div>
-
-            <h3 className="text-xl font-bold mb-3 dark:text-white text-black group-hover:text-[#10b981] transition-colors">
-              {project.title}
-            </h3>
-            <p className="dark:text-gray-400 text-gray-600 mb-4 text-sm leading-relaxed">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs dark:text-gray-300 text-gray-600"
-                >
-                  {tech}
+        {visibleProjects.map((project, index) => (
+          <Reveal key={project.id} delay={(index % 3) * 0.08}>
+            <div className="group h-full p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] transition-all duration-300 hover:shadow-2xl hover:shadow-[#10b981]/10 hover:-translate-y-2">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <span className="index-number text-2xl">{String(project.id).padStart(2, '0')}</span>
+                  <div className={`w-16 h-16 rounded-2xl ${project.color} flex items-center justify-center text-white`}>
+                    <project.icon className="w-7 h-7" strokeWidth={1.75} />
+                  </div>
+                </div>
+                <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-medium dark:text-gray-300 text-gray-600">
+                  {project.category}
                 </span>
-              ))}
-            </div>
+              </div>
 
-            <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between gap-4">
-              <Link
-                href={`/projects/${project.id}`}
-                className="text-[#10b981] text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all"
-              >
-                View Details
-                <ArrowRight className="w-4 h-4" strokeWidth={2} />
-              </Link>
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View on GitHub"
-                  className="text-gray-400 hover:text-[#10b981] transition-colors"
+              <h3 className="text-xl font-bold mb-3 dark:text-white text-black group-hover:text-[#10b981] transition-colors">
+                {project.title}
+              </h3>
+              <p className="dark:text-gray-400 text-gray-600 mb-4 text-sm leading-relaxed">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs dark:text-gray-300 text-gray-600"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between gap-4">
+                <Link
+                  href={`/projects/${project.id}`}
+                  className="text-[#10b981] text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all"
                 >
-                  <GitHubIcon className="w-5 h-5" />
-                </a>
-              )}
+                  View Details
+                  <ArrowRight className="w-4 h-4" strokeWidth={2} />
+                </Link>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View on GitHub"
+                    className="text-gray-400 hover:text-[#10b981] transition-colors"
+                  >
+                    <GitHubIcon className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
 

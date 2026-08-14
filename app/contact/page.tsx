@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
 import ContactForm from './ContactForm';
+import Reveal from '../components/Reveal';
 
 export const metadata = {
   title: 'Contact | Denne Joshua Suelan',
@@ -13,14 +14,16 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6 dark:text-white text-black">
+        <Reveal className="text-center mb-16">
+          <p className="eyebrow text-[#10b981] justify-center mb-4">Say Hello</p>
+          <h1 className="text-display mb-6 dark:text-white text-black" style={{ fontSize: 'clamp(2.75rem, 7vw, 6rem)' }}>
             Get In <span className="text-[#10b981]">Touch</span>
           </h1>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <Reveal delay={0.05}>
+          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 h-full">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-black">Contact Information</h2>
             <div className="space-y-4">
               <p className="flex items-center gap-2 dark:text-gray-400 text-gray-600">
@@ -42,11 +45,14 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
+          </Reveal>
 
-          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <Reveal delay={0.1}>
+          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 h-full">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-black">Send a Message</h2>
             <ContactForm />
           </div>
+          </Reveal>
         </div>
       </div>
     </main>

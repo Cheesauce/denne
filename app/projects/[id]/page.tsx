@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { projects, getProjectById } from '../projects-data';
 import { GitHubIcon } from '../GitHubIcon';
+import Reveal from '../../components/Reveal';
 
 export function generateStaticParams() {
   return projects.map((project) => ({ id: String(project.id) }));
@@ -41,6 +42,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           Back to Projects
         </Link>
 
+        <Reveal>
+        <span className="index-number block mb-2">{String(project.id).padStart(2, '0')}</span>
         <div className="flex items-start justify-between gap-4 mb-6">
           <div className={`w-20 h-20 rounded-2xl ${project.color} flex items-center justify-center text-white shrink-0`}>
             <project.icon className="w-9 h-9" strokeWidth={1.75} />
@@ -50,7 +53,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </span>
         </div>
 
-        <h1 className="text-4xl font-bold mb-6 dark:text-white text-black">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight dark:text-white text-black">
           {project.title}
         </h1>
 
@@ -80,6 +83,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             View on GitHub
           </a>
         )}
+        </Reveal>
 
         <div className="p-8 rounded-3xl bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center">
           <h2 className="text-2xl font-bold mb-3">Interested in something similar?</h2>

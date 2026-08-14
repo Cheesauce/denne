@@ -1,124 +1,168 @@
+'use client';
+
 import Link from 'next/link';
-import { Briefcase, Rocket, Star, Award, FlaskConical, Palette, Globe } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, FlaskConical, Palette, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Reveal from './components/Reveal';
+
+const marqueeItems = [
+  'Quality Assurance',
+  'UI/UX Design',
+  'Network Engineering',
+  'Test Automation',
+  'Field Deployment',
+  'Wireframing',
+];
+
+const services = [
+  {
+    icon: FlaskConical,
+    title: 'Quality Assurance',
+    description: 'Manual, automated, regression, and performance testing to catch what shouldn’t ship.',
+  },
+  {
+    icon: Palette,
+    title: 'UI/UX Design',
+    description: 'Wireframing, prototyping, and user research that turns ideas into interfaces people enjoy.',
+  },
+  {
+    icon: Globe,
+    title: 'Network Engineering',
+    description: 'Planning, field deployment, and maintenance of connectivity infrastructure at scale.',
+  },
+];
+
+const stats = [
+  { number: '3+', label: 'Years Experience' },
+  { number: '50+', label: 'Projects Completed' },
+  { number: '100%', label: 'Client Satisfaction' },
+  { number: '5+', label: 'Certifications' },
+];
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-black" />
-        
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#10b981]/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#10b981]/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '200ms' }} />
+    <main className="min-h-screen overflow-x-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-black -z-10" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:50px_50px] -z-10" />
+        <div className="absolute top-1/3 right-0 w-96 h-96 bg-[#10b981]/10 rounded-full blur-3xl animate-float -z-10" />
+
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="eyebrow text-[#10b981] mb-8"
+          >
+            Portfolio / 2026
+          </motion.p>
+
+          <h1 className="text-display dark:text-white text-black">
+            {['Hi, I’m', 'Denne', 'Joshua.'].map((word, i) => (
+              <motion.span
+                key={word}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className={`block ${i === 1 ? 'gradient-text' : ''}`}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="mt-10 grid md:grid-cols-2 gap-8 items-end"
+          >
+            <p className="text-xl md:text-2xl dark:text-gray-300 text-gray-600 max-w-md">
+              Network Engineer &amp;{' '}
+              <span className="text-[#10b981]">Quality Assurance, UI/UX</span> — ensuring
+              software and infrastructure hold up under real-world pressure.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 md:justify-end">
+              <Link
+                href="/projects"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#10b981] text-white font-semibold rounded-full hover:bg-[#059669] transition-all duration-300 glow-green"
+              >
+                View My Work
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-black dark:border-white text-black dark:text-white font-semibold rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+              >
+                Get In Touch
+              </Link>
+            </div>
+          </motion.div>
         </div>
 
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <p className="text-[#10b981] font-medium mb-4 tracking-widest uppercase animate-fade-in">
-            Welcome to My Portfolio
-          </p>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-slide-up">
-            <span className="dark:text-white text-black">Hi, I&apos;m </span>
-            <span className="gradient-text">Denne Joshua</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl dark:text-gray-300 text-gray-600 mb-8 animate-slide-up delay-100">
-             Network Engineer &
-            <span className="text-[#10b981]"> Quality Assurance, UI/UX</span>
-          </p>
-          
-          <p className="text-lg dark:text-gray-400 text-gray-500 mb-10 max-w-2xl mx-auto animate-slide-up delay-200">
-            Passionate about ensuring the highest quality in software products through 
-            meticulous testing, attention to detail, and user-centered design.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up delay-300">
-            <Link
-              href="/projects"
-              className="px-8 py-4 bg-[#10b981] text-white font-semibold rounded-full hover:bg-[#059669] transition-all duration-300 glow-green"
-            >
-              View My Work
-            </Link>
-            <Link
-              href="/contact"
-              className="px-8 py-4 border-2 border-black dark:border-white text-black dark:text-white font-semibold rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
-            >
-              Get In Touch
-            </Link>
-          </div>
-
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center pt-2">
-              <div className="w-1 h-3 bg-gray-400 rounded-full animate-pulse" />
-            </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center pt-2">
+            <div className="w-1 h-3 bg-gray-400 rounded-full animate-pulse" />
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
+      <div className="py-8 border-y dark:border-gray-800 border-gray-200 overflow-hidden dark:bg-gray-900/50 bg-gray-50">
+        <div className="marquee-track">
+          {[...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span
+              key={i}
+              className="flex items-center text-2xl md:text-4xl font-bold tracking-tight dark:text-gray-700 text-gray-300 px-8 whitespace-nowrap"
+            >
+              {item}
+              <span className="text-[#10b981] mx-8">&bull;</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: '3+', label: 'Years Experience', icon: Briefcase },
-              { number: '50+', label: 'Projects Completed', icon: Rocket },
-              { number: '100%', label: 'Client Satisfaction', icon: Star },
-              { number: '5+', label: 'Certifications', icon: Award },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 rounded-xl bg-[#10b981]/10 text-[#10b981]">
-                  <stat.icon className="w-6 h-6" strokeWidth={1.75} />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
+            {stats.map((stat, index) => (
+              <Reveal key={stat.label} delay={index * 0.08}>
+                <div className="text-center md:text-left border-t-2 dark:border-gray-800 border-gray-200 pt-6">
+                  <div className="text-5xl md:text-6xl font-bold text-[#10b981] mb-2 tracking-tight">{stat.number}</div>
+                  <div className="dark:text-gray-400 text-gray-600 text-sm uppercase tracking-widest">{stat.label}</div>
                 </div>
-                <div className="text-4xl font-bold text-[#10b981] mb-2">{stat.number}</div>
-                <div className="dark:text-gray-400 text-gray-600">{stat.label}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-24 bg-gray-50 dark:bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16 dark:text-white text-black">
-            What I <span className="text-[#10b981]">Do</span>
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: FlaskConical,
-                title: 'Quality Assurance',
-                description: 'Comprehensive testing strategies including manual testing, automated testing, regression testing, and performance testing to ensure software quality.',
-              },
-              {
-                icon: Palette,
-                title: 'UI/UX Design',
-                description: 'Creating intuitive and visually appealing user interfaces through wireframing, prototyping, and user research.',
-              },
-              {
-                icon: Globe,
-                title: 'Network Engineering',
-                description: 'Designing, implementing, and maintaining network infrastructure with a focus on security and performance.',
-              },
-            ].map((service, index) => (
-              <div
-                key={index}
-                className="group p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] transition-all duration-300 hover:shadow-2xl hover:shadow-[#10b981]/10"
-              >
-                <div className="inline-flex items-center justify-center w-14 h-14 mb-6 rounded-2xl bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
-                  <service.icon className="w-7 h-7" strokeWidth={1.75} />
+          <Reveal>
+            <p className="eyebrow text-[#10b981] mb-4">Capabilities</p>
+            <h2 className="text-display mb-16 dark:text-white text-black" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>
+              What I <span className="text-[#10b981]">Do</span>
+            </h2>
+          </Reveal>
+
+          <div className="divide-y dark:divide-gray-800 divide-gray-200 border-t border-b dark:border-gray-800 border-gray-200">
+            {services.map((service, index) => (
+              <Reveal key={service.title} delay={index * 0.08}>
+                <div className="group grid md:grid-cols-12 gap-4 md:gap-8 items-center py-10 hover:pl-4 transition-all duration-300">
+                  <span className="index-number md:col-span-1">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="md:col-span-2 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
+                    <service.icon className="w-7 h-7" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="md:col-span-3 text-2xl font-bold dark:text-white text-black">
+                    {service.title}
+                  </h3>
+                  <p className="md:col-span-5 dark:text-gray-400 text-gray-600">
+                    {service.description}
+                  </p>
+                  <ArrowRight className="hidden md:block md:col-span-1 w-6 h-6 text-gray-300 dark:text-gray-700 group-hover:text-[#10b981] group-hover:translate-x-2 transition-all duration-300" strokeWidth={2} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 dark:text-white text-black">
-                  {service.title}
-                </h3>
-                <p className="dark:text-gray-400 text-gray-600">
-                  {service.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

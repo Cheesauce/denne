@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Target, GraduationCap, Download, Briefcase, Award, ExternalLink } from 'lucide-react';
 import profilePhoto from '../../public/denne-profile.jpg';
+import Reveal from '../components/Reveal';
 
 const RESUME_PATH = '/Denne-Joshua-Suelan-Resume.pdf';
 
@@ -73,14 +74,15 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6 dark:text-white text-black">
+        <Reveal className="text-center mb-16">
+          <p className="eyebrow text-[#10b981] justify-center mb-4">Who I Am</p>
+          <h1 className="text-display mb-6 dark:text-white text-black" style={{ fontSize: 'clamp(2.75rem, 7vw, 6rem)' }}>
             About <span className="text-[#10b981]">Me</span>
           </h1>
           <p className="text-xl dark:text-gray-400 text-gray-600 max-w-2xl mx-auto">
             Here&apos;s a glimpse into who I am and what drives my passion for technology.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="relative">
@@ -128,58 +130,67 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-20">
-          <h2 className="flex items-center gap-2 text-3xl font-bold mb-8 dark:text-white text-black">
-            <Briefcase className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Experience
-          </h2>
-          <div className="space-y-6">
-            {experience.map((job) => (
-              <div
-                key={job.company}
-                className="p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
-                  <h3 className="text-xl font-bold dark:text-white text-black">
-                    {job.role} <span className="text-[#10b981]">· {job.company}</span>
-                  </h3>
-                  <span className="text-sm dark:text-gray-400 text-gray-500 shrink-0">{job.period}</span>
+          <Reveal>
+            <p className="eyebrow text-[#10b981] mb-4">Career</p>
+            <h2 className="flex items-center gap-3 text-3xl md:text-4xl font-bold mb-8 dark:text-white text-black">
+              <Briefcase className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Experience
+            </h2>
+          </Reveal>
+          <div className="divide-y dark:divide-gray-800 divide-gray-200 border-t border-b dark:border-gray-800 border-gray-200">
+            {experience.map((job, index) => (
+              <Reveal key={job.company} delay={index * 0.08}>
+                <div className="grid md:grid-cols-12 gap-4 md:gap-8 py-8">
+                  <span className="index-number md:col-span-1">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="md:col-span-11">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
+                      <h3 className="text-xl font-bold dark:text-white text-black">
+                        {job.role} <span className="text-[#10b981]">· {job.company}</span>
+                      </h3>
+                      <span className="text-sm dark:text-gray-400 text-gray-500 shrink-0">{job.period}</span>
+                    </div>
+                    <p className="text-sm text-[#10b981] mb-3">{job.location}</p>
+                    <ul className="space-y-1.5">
+                      {job.highlights.map((point) => (
+                        <li key={point} className="flex gap-2 dark:text-gray-300 text-gray-600 text-sm leading-relaxed">
+                          <span className="text-[#10b981] mt-1">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <p className="text-sm text-[#10b981] mb-3">{job.location}</p>
-                <ul className="space-y-1.5">
-                  {job.highlights.map((point) => (
-                    <li key={point} className="flex gap-2 dark:text-gray-300 text-gray-600 text-sm leading-relaxed">
-                      <span className="text-[#10b981] mt-1">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
 
         <div className="mt-20">
-          <h2 className="flex items-center gap-2 text-3xl font-bold mb-8 dark:text-white text-black">
-            <Award className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Certifications
-          </h2>
+          <Reveal>
+            <p className="eyebrow text-[#10b981] mb-4">Credentials</p>
+            <h2 className="flex items-center gap-3 text-3xl md:text-4xl font-bold mb-8 dark:text-white text-black">
+              <Award className="w-7 h-7 text-[#10b981]" strokeWidth={1.75} /> Certifications
+            </h2>
+          </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert) => (
-              <a
-                key={cert.name}
-                href={cert.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] transition-all duration-300"
-              >
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#10b981]/10 text-[#10b981] shrink-0">
-                    <Award className="w-5 h-5" strokeWidth={1.75} />
+            {certifications.map((cert, index) => (
+              <Reveal key={cert.name} delay={index * 0.06}>
+                <a
+                  href={cert.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block h-full p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#10b981]/10 text-[#10b981] shrink-0">
+                      <Award className="w-5 h-5" strokeWidth={1.75} />
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#10b981] transition-colors shrink-0 mt-1" strokeWidth={1.75} />
                   </div>
-                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#10b981] transition-colors shrink-0 mt-1" strokeWidth={1.75} />
-                </div>
-                <h3 className="font-bold dark:text-white text-black mb-1 leading-snug">{cert.name}</h3>
-                <p className="text-sm text-[#10b981]">{cert.issuer}</p>
-                <p className="text-xs dark:text-gray-400 text-gray-500 mt-1">{cert.date}</p>
-              </a>
+                  <h3 className="font-bold dark:text-white text-black mb-1 leading-snug">{cert.name}</h3>
+                  <p className="text-sm text-[#10b981]">{cert.issuer}</p>
+                  <p className="text-xs dark:text-gray-400 text-gray-500 mt-1">{cert.date}</p>
+                </a>
+              </Reveal>
             ))}
           </div>
         </div>

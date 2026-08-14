@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -23,6 +24,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider>
+          <div className="grain-overlay" aria-hidden="true" />
+          <CustomCursor />
           <Navbar />
           {children}
           <Footer />

@@ -1,4 +1,5 @@
 import { FlaskConical, Palette, Globe, Code2 } from 'lucide-react';
+import Reveal from '../components/Reveal';
 
 export const metadata = {
   title: 'Skills | Denne Joshua Suelan',
@@ -12,31 +13,33 @@ const skillCategories = [
   { title: 'Programming & Development', icon: Code2, skills: ['HTML & CSS', 'JavaScript', 'Python', 'Git/GitHub', 'Visual Studio Code'] },
 ];
 
-  
-
 export default function SkillsPage() {
   return (
     <main className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6 dark:text-white text-black">
+        <Reveal className="text-center mb-16">
+          <p className="eyebrow text-[#10b981] justify-center mb-4">Toolset</p>
+          <h1 className="text-display mb-6 dark:text-white text-black" style={{ fontSize: 'clamp(2.75rem, 7vw, 6rem)' }}>
             My <span className="text-[#10b981]">Skills</span>
           </h1>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category) => (
-            <div key={category.title} className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-              <div className="inline-flex items-center justify-center w-14 h-14 mb-4 rounded-2xl bg-[#10b981]/10 text-[#10b981]">
-                <category.icon className="w-7 h-7" strokeWidth={1.75} />
+          {skillCategories.map((category, index) => (
+            <Reveal key={category.title} delay={index * 0.08}>
+              <div className="group h-full p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] hover:-translate-y-1 transition-all duration-300">
+                <span className="index-number block mb-2">{String(index + 1).padStart(2, '0')}</span>
+                <div className="inline-flex items-center justify-center w-14 h-14 mb-4 rounded-2xl bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
+                  <category.icon className="w-7 h-7" strokeWidth={1.75} />
+                </div>
+                <h3 className="text-xl font-bold mb-4 dark:text-white text-black">{category.title}</h3>
+                <ul className="space-y-2">
+                  {category.skills.map((skill) => (
+                    <li key={skill} className="dark:text-gray-400 text-gray-600">• {skill}</li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-xl font-bold mb-4 dark:text-white text-black">{category.title}</h3>
-              <ul className="space-y-2">
-                {category.skills.map((skill) => (
-                  <li key={skill} className="dark:text-gray-400 text-gray-600">• {skill}</li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
