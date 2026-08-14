@@ -7,24 +7,32 @@
    setting, so the toggle and the OS preference could contradict each other. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Tailwind v4 CSS-first theme: registers the self-hosted fonts (imported as
+   @font-face rules via @fontsource/* in layout.tsx) as the `font-sans` /
+   `font-mono` utilities and default body font. */
+@theme {
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
 :root {
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
+  --bg-secondary: #f4f4f0;
   --text-primary: #0a0a0a;
   --text-secondary: #4b5563;
   --accent-green: #10b981;
   --card-bg: #ffffff;
-  --card-border: #e5e7eb;
+  --card-border: #0a0a0a;
 }
 
 .dark {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #171717;
+  --bg-primary: #050505;
+  --bg-secondary: #111111;
   --text-primary: #ffffff;
   --text-secondary: #a3a3a3;
   --accent-green: #10b981;
-  --card-bg: #171717;
-  --card-border: #262626;
+  --card-bg: #0a0a0a;
+  --card-border: #ffffff;
 }
 
 * {
@@ -38,6 +46,7 @@ html {
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  font-family: var(--font-sans);
 }
 
 ::-webkit-scrollbar {
@@ -114,34 +123,35 @@ body {
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 
-/* ---- Awwwards-style redesign primitives ---- */
+/* ---- Brutalist/editorial redesign primitives ---- */
 
 /* Oversized, tight-tracked display headline used for hero/section titles. */
 .text-display {
+  font-family: var(--font-sans);
   font-size: clamp(3rem, 10vw, 9rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   font-weight: 700;
 }
 
-/* Section eyebrow label with wide letter-spacing and a leading rule. */
+/* Section eyebrow label: monospace, wide letter-spacing, a leading rule. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .eyebrow::before {
   content: '';
   display: inline-block;
   width: 2.5rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.5;
+  height: 2px;
+  background: var(--accent-green);
 }
 
 /* Large "ghost" index numbers (01, 02, ...) used next to list items and
@@ -150,12 +160,51 @@ body {
    make the fill transparent, rather than setting `color: transparent`
    directly, which would make the stroke invisible too. */
 .index-number {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-family: var(--font-mono);
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   -webkit-text-stroke: 1.5px currentColor;
   -webkit-text-fill-color: transparent;
   opacity: 0.35;
+}
+
+/* Hard-edged "brutalist" block: thick border, solid offset shadow that
+   grows and shifts the element up-left on hover/focus for a tactile,
+   sticker-like feel. Used for cards, buttons, and inputs in place of the
+   soft rounded-corner + drop-shadow look. */
+.brutal {
+  border: 2px solid var(--card-border);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 var(--accent-green);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.brutal:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 0 var(--accent-green);
+}
+
+.brutal:active {
+  transform: translate(0, 0);
+  box-shadow: 3px 3px 0 0 var(--accent-green);
+}
+
+/* Same interaction, no visible border — for elements that already have
+   their own border/background treatment (e.g. solid-fill buttons). */
+.brutal-shadow {
+  box-shadow: 6px 6px 0 0 var(--accent-green);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.brutal-shadow:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 0 var(--accent-green);
+}
+
+.brutal-shadow:active {
+  transform: translate(0, 0);
+  box-shadow: 3px 3px 0 0 var(--accent-green);
 }
 
 /* Infinite horizontal marquee strip. */
@@ -168,6 +217,7 @@ body {
   display: flex;
   width: max-content;
   animation: marquee 22s linear infinite;
+  font-family: var(--font-mono);
 }
 
 /* Subtle film-grain texture overlay for a less "flat SaaS" feel. */
@@ -190,26 +240,43 @@ body {
   }
 }
 
-.cursor-dot,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
 .cursor-ring {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 60;
   pointer-events: none;
-  border-radius: 9999px;
-  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(16, 185, 129, 0.7);
+  transform: translate(-50%, -50%) rotate(45deg);
   will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: #10b981;
+.cursor-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #10b981;
+  background: var(--bg-primary);
+  padding: 2px 6px;
+  white-space: nowrap;
+  transform: rotate(-45deg);
 }
-
-.cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(16, 185, 129, 0.6);
-}  

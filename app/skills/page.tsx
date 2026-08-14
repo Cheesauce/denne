@@ -1,5 +1,6 @@
 import { FlaskConical, Palette, Globe, Code2 } from 'lucide-react';
 import Reveal from '../components/Reveal';
+import TiltCard from '../components/TiltCard';
 
 export const metadata = {
   title: 'Skills | Denne Joshua Suelan',
@@ -27,9 +28,9 @@ export default function SkillsPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, index) => (
             <Reveal key={category.title} delay={index * 0.08}>
-              <div className="group h-full p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#10b981] hover:-translate-y-1 transition-all duration-300">
+              <TiltCard className="group h-full p-8 border-2 border-black dark:border-white bg-white dark:bg-gray-800 hover:border-[#10b981] transition-all duration-300 brutal-shadow">
                 <span className="index-number block mb-2">{String(index + 1).padStart(2, '0')}</span>
-                <div className="inline-flex items-center justify-center w-14 h-14 mb-4 rounded-2xl bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-14 h-14 mb-4 border-2 border-black dark:border-white bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
                   <category.icon className="w-7 h-7" strokeWidth={1.75} />
                 </div>
                 <h3 className="text-xl font-bold mb-4 dark:text-white text-black">{category.title}</h3>
@@ -38,7 +39,7 @@ export default function SkillsPage() {
                     <li key={skill} className="dark:text-gray-400 text-gray-600">• {skill}</li>
                   ))}
                 </ul>
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

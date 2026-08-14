@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, FlaskConical, Palette, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Reveal from './components/Reveal';
+import Magnetic from './components/Magnetic';
 
 const marqueeItems = [
   'Quality Assurance',
@@ -83,20 +84,24 @@ export default function Home() {
               software and infrastructure hold up under real-world pressure.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 md:justify-end">
-              <Link
-                href="/projects"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#10b981] text-white font-semibold rounded-full hover:bg-[#059669] transition-all duration-300 glow-green"
-              >
-                View My Work
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-black dark:border-white text-black dark:text-white font-semibold rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
-              >
-                Get In Touch
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-6 md:justify-end">
+              <Magnetic>
+                <Link
+                  href="/projects"
+                  className="brutal-shadow group inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-black dark:border-white bg-[#10b981] text-white font-semibold"
+                >
+                  View My Work
+                  <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link
+                  href="/contact"
+                  className="brutal-shadow inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-black dark:border-white text-black dark:text-white font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+                >
+                  Get In Touch
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
         </div>
@@ -151,7 +156,7 @@ export default function Home() {
               <Reveal key={service.title} delay={index * 0.08}>
                 <div className="group grid md:grid-cols-12 gap-4 md:gap-8 items-center py-10 hover:pl-4 transition-all duration-300">
                   <span className="index-number md:col-span-1">{String(index + 1).padStart(2, '0')}</span>
-                  <div className="md:col-span-2 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
+                  <div className="md:col-span-2 inline-flex items-center justify-center w-14 h-14 border-2 border-black dark:border-white bg-[#10b981]/10 text-[#10b981] group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all duration-300">
                     <service.icon className="w-7 h-7" strokeWidth={1.75} />
                   </div>
                   <h3 className="md:col-span-3 text-2xl font-bold dark:text-white text-black">

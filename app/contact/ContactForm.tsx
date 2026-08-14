@@ -33,7 +33,7 @@ export default function ContactForm() {
         required
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 outline-none focus:border-[#10b981]"
+        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-black dark:border-white outline-none focus:border-[#10b981] transition-colors"
       />
       <input
         type="email"
@@ -42,7 +42,7 @@ export default function ContactForm() {
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 outline-none focus:border-[#10b981]"
+        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-black dark:border-white outline-none focus:border-[#10b981] transition-colors"
       />
       <textarea
         name="message"
@@ -51,11 +51,12 @@ export default function ContactForm() {
         required
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 outline-none focus:border-[#10b981]"
+        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-black dark:border-white outline-none focus:border-[#10b981] transition-colors"
       />
       <button
         type="submit"
-        className="w-full py-4 bg-[#10b981] text-white font-semibold rounded-xl hover:bg-[#059669] transition-all"
+        data-cursor="Send"
+        className="brutal-shadow w-full py-4 border-2 border-black dark:border-white bg-[#10b981] text-white font-semibold hover:bg-[#059669] transition-all"
       >
         Send Message
       </button>

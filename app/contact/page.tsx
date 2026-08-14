@@ -23,7 +23,7 @@ export default function ContactPage() {
 
         <div className="grid md:grid-cols-2 gap-12">
           <Reveal delay={0.05}>
-          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 h-full">
+          <div className="p-8 border-2 border-black dark:border-white bg-white dark:bg-gray-800 h-full brutal-shadow">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-black">Contact Information</h2>
             <div className="space-y-4">
               <p className="flex items-center gap-2 dark:text-gray-400 text-gray-600">
@@ -48,7 +48,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 h-full">
+          <div className="p-8 border-2 border-black dark:border-white bg-white dark:bg-gray-800 h-full brutal-shadow">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-black">Send a Message</h2>
             <ContactForm />
           </div>

@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { projects, getProjectById } from '../projects-data';
 import { GitHubIcon } from '../GitHubIcon';
 import Reveal from '../../components/Reveal';
+import Magnetic from '../../components/Magnetic';
 
 export function generateStaticParams() {
   return projects.map((project) => ({ id: String(project.id) }));
@@ -36,7 +37,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <div className="max-w-4xl mx-auto px-6">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[#10b981] hover:gap-3 transition-all mb-10"
+          data-cursor="Back"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#10b981] hover:gap-3 transition-all mb-10"
         >
           <ArrowLeft className="w-4 h-4" strokeWidth={2} />
           Back to Projects
@@ -45,10 +47,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <Reveal>
         <span className="index-number block mb-2">{String(project.id).padStart(2, '0')}</span>
         <div className="flex items-start justify-between gap-4 mb-6">
-          <div className={`w-20 h-20 rounded-2xl ${project.color} flex items-center justify-center text-white shrink-0`}>
+          <div className={`w-20 h-20 border-2 border-black dark:border-white ${project.color} flex items-center justify-center text-white shrink-0`}>
             <project.icon className="w-9 h-9" strokeWidth={1.75} />
           </div>
-          <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-medium dark:text-gray-300 text-gray-600 shrink-0 mt-2">
+          <span className="px-3 py-1 border border-black dark:border-white text-xs font-mono uppercase dark:text-gray-300 text-gray-600 shrink-0 mt-2">
             {project.category}
           </span>
         </div>
@@ -65,7 +67,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-full text-sm font-medium dark:text-gray-300 text-gray-600"
+              className="px-3 py-1.5 border border-black dark:border-white font-mono text-sm dark:text-gray-300 text-gray-600"
             >
               {tech}
             </span>
@@ -73,29 +75,34 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         </div>
 
         {project.url && (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-black dark:border-white text-black dark:text-white font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 mb-10"
-          >
-            <GitHubIcon className="w-5 h-5" />
-            View on GitHub
-          </a>
+          <Magnetic className="inline-block mb-10">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="GitHub"
+              className="brutal-shadow inline-flex items-center gap-2 px-6 py-3 border-2 border-black dark:border-white text-black dark:text-white font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+            >
+              <GitHubIcon className="w-5 h-5" />
+              View on GitHub
+            </a>
+          </Magnetic>
         )}
         </Reveal>
 
-        <div className="p-8 rounded-3xl bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center">
+        <div className="p-8 border-2 border-black dark:border-white bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center">
           <h2 className="text-2xl font-bold mb-3">Interested in something similar?</h2>
           <p className="text-white/80 mb-6 max-w-xl mx-auto">
             Let&apos;s talk about how I can help with your next project.
           </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-4 bg-white text-[#10b981] font-semibold rounded-full hover:bg-gray-100 transition-all duration-300"
-          >
-            Get In Touch
-          </Link>
+          <Magnetic className="inline-block">
+            <Link
+              href="/contact"
+              className="brutal-shadow inline-block px-8 py-4 border-2 border-black bg-white text-[#10b981] font-semibold"
+            >
+              Get In Touch
+            </Link>
+          </Magnetic>
         </div>
       </div>
     </main>
