@@ -220,6 +220,14 @@ body {
   font-family: var(--font-mono);
 }
 
+/* Fades the marquee text to transparent at both edges instead of letting
+   `overflow-hidden` hard-clip letters mid-glyph — softens what otherwise
+   reads as an abrupt, unfinished-looking cut at the container bounds. */
+.marquee-fade {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
 /* Fixed, full-viewport dot-grid canvas (see InteractiveGrid.tsx). Negative
    z-index keeps it behind every normal-flow element on the page — it only
    shows through wherever a section doesn't paint its own background. */

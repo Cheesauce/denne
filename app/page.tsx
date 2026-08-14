@@ -112,12 +112,12 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="py-8 border-y dark:border-gray-800 border-gray-200 overflow-hidden dark:bg-gray-900/50 bg-gray-50">
+      <div className="marquee-fade py-8 border-y dark:border-gray-800 border-gray-200 overflow-hidden">
         <div className="marquee-track">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span
               key={i}
-              className="flex items-center text-2xl md:text-4xl font-bold tracking-tight dark:text-gray-700 text-gray-300 px-8 whitespace-nowrap"
+              className="flex items-center text-2xl md:text-4xl font-bold tracking-tight dark:text-gray-500 text-gray-400 px-8 whitespace-nowrap"
             >
               {item}
               <span className="text-[#10b981] mx-8">&bull;</span>
