@@ -10,6 +10,9 @@ export type Project = {
   color: string;
   url?: string;
   image?: string;
+  /** Figma prototype URL — when set, the detail page embeds it as a live,
+   *  clickable prototype instead of (or alongside) the static screenshot. */
+  figmaUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -124,6 +127,7 @@ export const projects: Project[] = [
     icon: Cookie,
     color: 'bg-yellow-500',
     image: '/projects/hokkaido-cheese-tart.jpg',
+    figmaUrl: 'https://www.figma.com/proto/VZTvlfsRH4ndmA4vKPaJ2r/Hokkaido-Baked-Cheese-Tart?node-id=18-129&starting-point-node-id=18%3A129',
   },
   {
     id: 13,
@@ -134,6 +138,7 @@ export const projects: Project[] = [
     icon: Footprints,
     color: 'bg-slate-700',
     image: '/projects/nike-shoes.jpg',
+    figmaUrl: 'https://www.figma.com/proto/ZJIvs7g1YMqnVFehN9y5Iq/Nike-Shoes?node-id=50-2&p=f&t=OcstokQjxb3aXbUw-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=50%3A2',
   },
   {
     id: 14,
@@ -144,6 +149,7 @@ export const projects: Project[] = [
     icon: Building2,
     color: 'bg-blue-600',
     image: '/projects/makati-city.jpg',
+    figmaUrl: 'https://www.figma.com/proto/UUOWTt2WXca8aIXtc694rm/Makati-City?node-id=12-72&p=f&t=oehnY2hiaMR561HR-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=12%3A72',
   },
   {
     id: 15,
@@ -154,6 +160,7 @@ export const projects: Project[] = [
     icon: Layers,
     color: 'bg-violet-500',
     image: '/projects/limbaga-77.jpg',
+    figmaUrl: 'https://www.figma.com/proto/EjjOp0VxdQVAdGLsJsz9hp/Limbaga-77?node-id=1-227&p=f&t=d24Q9hpQNRrh9oCB-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A227',
   },
   {
     id: 16,
@@ -164,6 +171,7 @@ export const projects: Project[] = [
     icon: Dices,
     color: 'bg-emerald-600',
     image: '/projects/zen-casino.jpg',
+    figmaUrl: 'https://www.figma.com/proto/QLLuqslYQqtRR4XaD8URq8/ZEN-Casino?node-id=26-207&p=f&t=MlcMRtafF4LZm7uK-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A207',
   },
   {
     id: 17,
@@ -174,6 +182,7 @@ export const projects: Project[] = [
     icon: Gamepad2,
     color: 'bg-red-600',
     image: '/projects/hero-slots.jpg',
+    figmaUrl: 'https://www.figma.com/proto/XNFH091KtHnEBFDAWI2yjP/Hero-Slots?node-id=1-4&p=f&t=hDMTie4xDV0eL9xa-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A4',
   },
   {
     id: 18,
@@ -184,6 +193,7 @@ export const projects: Project[] = [
     icon: Crown,
     color: 'bg-yellow-600',
     image: '/projects/king-casino.jpg',
+    figmaUrl: 'https://www.figma.com/proto/T5I4qFrx8mfL1YopFhEu0v/King-Casino?node-id=12-1147&p=f&t=Y1JP1k7iqHfVSJ96-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=12%3A1147',
   },
   {
     id: 19,
@@ -194,26 +204,29 @@ export const projects: Project[] = [
     icon: Trophy,
     color: 'bg-amber-600',
     image: '/projects/casino-legends.jpg',
+    figmaUrl: 'https://www.figma.com/proto/ZfqYUDy3Ko1CusunPb0kbp/Casino-Legends?node-id=14-2260&p=f&t=UDMG7RBIqKoLcJES-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=14%3A2260',
   },
   {
     id: 20,
     title: 'Arcade Casino — iGaming UI',
     category: 'UI/UX Design',
-    description: 'Designed a clean, approachable online casino UI concept centered on a simple onboarding flow and first-deposit bonus offer.',
+    description: 'Designed a bold, retro pixel-art branded casino landing page, built around a playful arcade-game visual identity and a clear bonus call-to-action.',
     technologies: ['Figma', 'iGaming UI', 'Prototyping'],
     icon: Joystick,
     color: 'bg-fuchsia-600',
     image: '/projects/arcade-casino.jpg',
+    figmaUrl: 'https://www.figma.com/proto/ROR0ACjtVbwve3quRr9oWQ/Arcade-Casino?node-id=77-140&starting-point-node-id=77%3A140',
   },
   {
     id: 21,
-    title: 'UX Design Landing Page — Account Login Flow',
+    title: 'UX Design Landing Page — Casino Onboarding',
     category: 'UI/UX Design',
-    description: 'Designed an account login/registration flow for a business web portal, focused on clear form hierarchy, account-type selection, and error-free input states.',
-    technologies: ['Figma', 'UX Design', 'Form Design'],
+    description: 'Designed a clean online casino landing page as a UX case study, focused on a simple onboarding flow and first-top-up bonus offer.',
+    technologies: ['Figma', 'UX Design', 'Prototyping'],
     icon: LayoutTemplate,
     color: 'bg-sky-600',
     image: '/projects/ux-design-landing.jpg',
+    figmaUrl: 'https://www.figma.com/proto/FeqVPvwY8f3RwS6v1tJVN8/UX-Design-Landing-page?node-id=24-386&starting-point-node-id=24%3A386',
   },
   {
     id: 22,
@@ -224,6 +237,7 @@ export const projects: Project[] = [
     icon: Gem,
     color: 'bg-orange-600',
     image: '/projects/templars-gold.jpg',
+    figmaUrl: 'https://www.figma.com/proto/Qnq3vVG2biJCrnDZYR1Oln/Templar-s-Gold?node-id=8-106&p=f&t=Ew4rHfI8VIFnD4uu-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=8%3A106',
   },
   {
     id: 23,
@@ -234,25 +248,29 @@ export const projects: Project[] = [
     icon: Sparkles,
     color: 'bg-indigo-600',
     image: '/projects/casino-origin.jpg',
+    figmaUrl: 'https://www.figma.com/proto/988s5zAOB1mG21h4n8n9Uy/CASINO-ORIGIN?node-id=68-430&starting-point-node-id=68%3A430',
   },
   {
     id: 24,
     title: 'Hardware Website Collaboration',
     category: 'UI/UX Design',
-    description: 'Collaborated on the UI design for a hardware/tools e-commerce website, working alongside another designer on layout, navigation, and page structure.',
-    technologies: ['Figma', 'Collaboration', 'Web Design'],
+    description: 'Collaborated on the UI design for an automotive-care e-commerce website, working alongside another designer on the shopping cart, product listings, and page structure.',
+    technologies: ['Figma', 'Collaboration', 'E-Commerce'],
     icon: Wrench,
     color: 'bg-stone-600',
+    image: '/projects/hardware-website.jpg',
+    figmaUrl: 'https://www.figma.com/proto/N936gPfp9gsxLUktmeAO1e/Hardware-Website-Collaboration--1?node-id=121-2134&starting-point-node-id=121%3A2134',
   },
   {
     id: 25,
-    title: 'Free UI Design — E-Commerce Practice Project',
+    title: 'Free UI Design — Account Login Practice Project',
     category: 'UI/UX Design',
-    description: 'A self-directed practice project redesigning an automotive parts e-commerce shopping cart, focused on clear product listings and a frictionless checkout.',
-    technologies: ['Figma', 'E-Commerce', 'Self-Directed Practice'],
+    description: 'A self-directed practice project redesigning an account login/registration flow for a business web portal, focused on clear form hierarchy and account-type selection.',
+    technologies: ['Figma', 'UX Design', 'Self-Directed Practice'],
     icon: Palette,
     color: 'bg-lime-600',
     image: '/projects/free-ui-design-project.jpg',
+    figmaUrl: 'https://www.figma.com/proto/Gz40oZw87yFGZgwkIcqeB1/Free-UI-Design--For-Project-?node-id=5-144&starting-point-node-id=5%3A144',
   },
   {
     id: 26,
@@ -263,6 +281,7 @@ export const projects: Project[] = [
     icon: Coins,
     color: 'bg-pink-600',
     image: '/projects/aesthetic-casino.jpg',
+    figmaUrl: 'https://www.figma.com/proto/E1T4erLS0pkZsf5jWDcwO6/Aesthetic-Casino?node-id=15-134&p=f&t=ckDhAgCD4byjfAHK-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=15%3A134',
   },
 ];
 

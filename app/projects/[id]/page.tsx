@@ -60,7 +60,24 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {project.title}
         </h1>
 
-        {project.image && (
+        {project.figmaUrl ? (
+          <div className="mb-8 border-2 border-black dark:border-white overflow-hidden bg-gray-100 dark:bg-gray-900 brutal-shadow">
+            <iframe
+              className="w-full aspect-video"
+              src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl)}`}
+              allowFullScreen
+              loading="lazy"
+            />
+            <a
+              href={project.figmaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center py-2 font-mono text-xs uppercase tracking-widest text-[#10b981] hover:underline border-t-2 border-black dark:border-white bg-white dark:bg-gray-900"
+            >
+              Open Full Prototype in Figma
+            </a>
+          </div>
+        ) : project.image && (
           <div className="mb-8 border-2 border-black dark:border-white overflow-hidden bg-gray-100 dark:bg-gray-900 brutal-shadow">
             <Image
               src={project.image}
