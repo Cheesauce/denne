@@ -43,7 +43,7 @@ const stats = [
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
-      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-16">
+      <section className="relative min-h-[100svh] md:min-h-screen flex flex-col justify-start md:justify-center pt-28 md:pt-32 pb-16">
         <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-gray-50/60 to-gray-100/70 dark:from-black/70 dark:via-gray-900/60 dark:to-black/70 -z-10" />
         <div className="absolute top-1/3 right-0 w-96 h-96 bg-[#10b981]/10 rounded-full blur-3xl animate-float -z-10" />
 
